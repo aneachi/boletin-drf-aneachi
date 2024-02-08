@@ -1,5 +1,8 @@
+from random import choices
+
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class Marca(models.Model):
@@ -11,7 +14,11 @@ class Marca(models.Model):
     class Meta:
         verbose_name_plural = "Marcas"
 
-
+class Color(models.IntegerChoices):
+    AZUL = 1, _('Azul')
+    ROJO = 2, _('Rojo')
+    BLANCO = 3, _('Blanco')
+    NEGRO = 4, _('Negro')
 
 class Vehiculo(models.Model):
     TIPO_VEHICULO = [
@@ -24,7 +31,7 @@ class Vehiculo(models.Model):
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
     modelo = models.CharField(max_length=30)
     matricula = models.CharField(max_length=7, unique=True)
-    # color
+    color = models.IntegerChoices(choices=Color)
     fechaFabri = models.DateTimeField(default=timezone.now)
     fechaMatri = models.DateTimeField(null=True)
     fechaBaja = models.DateTimeField(null=True)

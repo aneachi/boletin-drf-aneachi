@@ -9,16 +9,16 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: boletin-drf-aneachi
-    container_name: boletin-drf-aneachi
+    image: boletin-django-rf-aneachi
+    container_name: boletin-django-rf-aneachi
     env_file:
       - ./.envs/.local/.postgres
     volumes:
-      - boletin-drf_postgres_data:/var/lib/postgresql/data
+      - boletin-django-rf_postgres_data:/var/lib/postgresql/data
 #      - drf-tutorial_data_backups:/backups
     ports:
       - 5435:5432
 
 volumes:
-  boletin-drf_postgres_data:
+  boletin-django-rf_postgres_data:
 #  drf-tutorial_data_backups:

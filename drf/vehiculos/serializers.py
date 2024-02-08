@@ -1,13 +1,13 @@
-from django.contrib.auth.models import Group, User
+from .models import Marca, Vehiculo
 from rest_framework import serializers
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class MarcaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
+        model = Marca
+        fields = ['id', 'nombre', 'url']
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class VehiculoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Group
-        fields = ['url', 'name']
+        model = Vehiculo
+        fields = ['id', 'chasis', 'marca', 'modelo', 'tipoVehiculo', 'matricula', 'colo', 'fechaFabri', 'fechaMatri', 'fechaBaja','suspendido']
